@@ -1,3 +1,7 @@
+var mvFileToFolder = require('./utils/mvFileToFolder.js');
+var selectCompilingCommand = require('./utils/selectCompilingCommand.js');
+var compilersArr = require('./compilers.js');
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var exec = require('child_process').exec;
@@ -25,20 +29,27 @@ app.post('/compile', upload.single('codefile'), function(req, res) {
   // pull image from docker hub
   var langId = parseInt(req.body.langid);
 
-  var st = 'docker run --rm -v ' + __dirname + '/usercode:/usercode nodetest node /usercode/runtests.js';
+  mvFileToFolder(langId, 'usercode.js');
+
+  var st = selectCompilingCommand(langId);
+
+  // var st = 'docker run --rm -v ' + __dirname + '/usercode/javascript:/usercode nodetest node /usercode/runtests.js';
   console.log('Executable statement has been built');
   exec(st, function(err, stdOut, stdErr) {
     if(err) {
       console.log('Some error occured.');
     }
 
+    // var resJSON = JSON.stringify(stdOut);
     console.log('stdOut: ' + stdOut);
     console.log('stdErr: ' + stdErr);
-    fs.unlink(__dirname + '/usercode/usercode.js', function(err) {
+
+    var fileToRm = compilersArr[langId][1];
+    fs.unlink(fileToRm, function(err) {
       if(err) {
         console.log(err);
       }
-      res.status(200).send();
+      res.status(200).json(stdOut);
     });
   });
 
