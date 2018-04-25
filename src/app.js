@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var exec = require('child_process').exec;
 var fs = require('fs');
 
@@ -17,10 +18,15 @@ var app = express();
 var port = 3000;
 
 // app.use(express.static(__dirname));
+app.use(bodyParser());
 
 app.post('/compile', upload.single('codefile'), function(req, res) {
   // console.log(__dirname + '/usercode');
-  var st = 'docker run --rm -v ' + __dirname + '/usercode:/usercode nodetest node /usercode/usercode.js';
+  // pull image from docker hub
+  var langId = parseInt(req.body.langid);
+
+  var st = 'docker run --rm -v ' + __dirname + '/usercode:/usercode nodetest node /usercode/runtests.js';
+  console.log('Executable statement has been built');
   exec(st, function(err, stdOut, stdErr) {
     if(err) {
       console.log('Some error occured.');
@@ -32,6 +38,7 @@ app.post('/compile', upload.single('codefile'), function(req, res) {
       if(err) {
         console.log(err);
       }
+      res.status(200).send();
     });
   });
 
