@@ -9,6 +9,8 @@ $ npm install
 ```
 Once the packages have been installed, navigate to `/src` and run the app by executing the following command:
 
+**NOTE:** Before running the app, build the required Docker images. See the following section **Building the required images**.
+
 ```
 $ node app.js
 ```
