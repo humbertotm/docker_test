@@ -25,31 +25,31 @@ var port = 3000;
 app.use(bodyParser());
 
 app.post('/compile', upload.single('codefile'), function(req, res) {
-  // console.log(__dirname + '/usercode');
-  // pull image from docker hub
   var langId = parseInt(req.body.langid);
 
   mvFileToFolder(langId, 'usercode.js');
 
   var st = selectCompilingCommand(langId);
 
-  // var st = 'docker run --rm -v ' + __dirname + '/usercode/javascript:/usercode nodetest node /usercode/runtests.js';
-  console.log('Executable statement has been built');
+  // console.log('Executable statement has been built');
   exec(st, function(err, stdOut, stdErr) {
     if(err) {
       console.log('Some error occured.');
+    } else if(stdErr) {
+      console.log('stdErr: ' + stdErr);
+    } else {
+      console.log('stdOut: ' + stdOut);
     }
 
-    // var resJSON = JSON.stringify(stdOut);
-    console.log('stdOut: ' + stdOut);
-    console.log('stdErr: ' + stdErr);
+    // Works for Javascript
+    // var parsedOutput = JSON.parse(stdOut);
 
     var fileToRm = compilersArr[langId][1];
     fs.unlink(fileToRm, function(err) {
       if(err) {
         console.log(err);
       }
-      res.status(200).json(stdOut);
+      res.status(200).json(parsedOutput);
     });
   });
 

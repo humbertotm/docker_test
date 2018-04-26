@@ -1,5 +1,9 @@
 require_relative "../src/my_model"
 require_relative "../src/my_model"
+require_relative "../src/my_model"
+require_relative "../src/my_model"
+require_relative "../src/my_model"
+require_relative "../src/my_model"
 RSpec.describe MyModel do
  it "expect be true" do
    a=MyModel.new.the_truth
