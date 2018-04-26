@@ -41,8 +41,7 @@ app.post('/compile', upload.single('codefile'), function(req, res) {
       console.log('stdOut: ' + stdOut);
     }
 
-    // Works for Javascript
-    // var parsedOutput = JSON.parse(stdOut);
+    var parsedOutput = JSON.parse(stdOut);
 
     var fileToRm = compilersArr[langId][1];
     fs.unlink(fileToRm, function(err) {

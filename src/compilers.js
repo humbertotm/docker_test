@@ -10,9 +10,8 @@ var rubyVolume = path.join(__dirname, './usercode/ruby');
 
 var jsPath = path.join(__dirname, './usercode/javascript/usercode.js');
 var javaPath = path.join(__dirname, './usercode/java/src/main/usercode.java');
-var rubyPath = path.join(__dirname, './usercode/ruby/app/src/model.rb');
+var rubyPath = path.join(__dirname, './usercode/ruby/app/src/my_model.rb');
 
-// Verify shared volumes and image names.
 var jsCompile = 'docker run --rm -v ' + jsVolume + ':/usercode ' + jsImage + ' node /usercode/runtests.js';
 var javaCompile = 'docker run --rm -v ' + javaVolume + ':/sourcecode ' + javaImage;
 var rubyCompile = 'docker run --rm -v ' + rubyVolume + ':/code ' + rubyImage;
