@@ -13,6 +13,25 @@ Once the packages have been installed, navigate to `/src` and run the app by exe
 $ node app.js
 ```
 
+# Building the required images
+
+**Javascript image:**
+```
+$ docker pull humbertotm/javascript_compiler
+```
+
+**Java image:**
+```
+$ docker pull eso31/junitimage
+```
+
+**Ruby image:**
+```
+$ docker pull jxjxjxm/rubyimage
+```
+
+Now you are all set to try it out.
+
 # Taking it for a test drive...
 
 To try it out, you will find the folder `testcode` in the root directory of the project. In this folder, you will find three different files which will serve as test input for the app. Use your favorite tool to simulate HTTP requests (Postman, for example), and make a `POST` request to the following url: `http://localhost:3000/compile`.

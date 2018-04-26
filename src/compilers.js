@@ -1,6 +1,6 @@
 var path = require('path');
 
-var jsImage = 'nodetest';
+var jsImage = 'humbertotm/javascript_compiler';
 var javaImage = 'eso31/junitimage';
 var rubyImage = 'jxjxjxm/rubyimage';
 
