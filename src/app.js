@@ -44,6 +44,7 @@ app.post('/compile', upload.single('codefile'), function(req, res) {
     var parsedOutput = JSON.parse(stdOut);
 
     var fileToRm = compilersArr[langId][1];
+    // Need to erase target folder when the lang is java
     fs.unlink(fileToRm, function(err) {
       if(err) {
         console.log(err);

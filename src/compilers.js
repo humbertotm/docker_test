@@ -9,7 +9,7 @@ var javaVolume = path.join(__dirname, './usercode/java');
 var rubyVolume = path.join(__dirname, './usercode/ruby');
 
 var jsPath = path.join(__dirname, './usercode/javascript/usercode.js');
-var javaPath = path.join(__dirname, './usercode/java/src/main/usercode.java');
+var javaPath = path.join(__dirname, './usercode/java/src/main/java/Calculator.java');
 var rubyPath = path.join(__dirname, './usercode/ruby/app/src/my_model.rb');
 
 var jsCompile = 'docker run --rm -v ' + jsVolume + ':/usercode ' + jsImage + ' node /usercode/runtests.js';
