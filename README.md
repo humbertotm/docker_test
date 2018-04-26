@@ -20,15 +20,26 @@ To try it out, you will find the folder `testcode` in the root directory of the 
 The body of the request should simulate data retrieved from a form with the following fields, and respective values:
 
 **Fieldname:** `codefile`
+
 **Type:** `File`
+
 **Value:** Any of the files in the `testcode` folder.
 
+
+
 **Fieldname:** `langid`
+
 **Type:** `Text`
+
 **Value:** The matching value for the language to test.
 
-**Language Ids**
+
+
+###Language Ids**
+
 
 **Javascript:** 0
+
 **Java:** 1
-**Ruby:** 2 
+
+**Ruby:** 2
